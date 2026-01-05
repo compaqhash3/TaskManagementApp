@@ -1,0 +1,11 @@
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task-table-wrapper {
+  max-height: calc(100vh - 450px);
+  overflow-y: auto;
+}
+
+

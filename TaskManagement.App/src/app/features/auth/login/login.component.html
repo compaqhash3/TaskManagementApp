@@ -1,0 +1,32 @@
+<div class="login-page">
+  <div class="login-container">
+    <div class="row">
+      <div class="col-md-6 text-center border-end">
+        <div class="row text-center">
+          <h1 class="text-light">Task Management App</h1>
+        </div>
+        <div class="row mt-5">
+          <img src="assets/images/imgLogin2.png" alt="Login" class="login-image" />
+        </div>        
+      </div>
+      <div class="col-md-6 text-light" >
+        <h3 class="text-center mb-5">Login</h3>
+
+        <form (ngSubmit)="login()">
+          <div>
+            <label class="text-light">Username</label>
+            <input class="form-control" type="text" [(ngModel)]="username" name="username" required />
+          </div>
+
+          <div>
+            <label class="text-light">Password</label>
+            <input class="form-control" type="password" [(ngModel)]="password" name="password" required />
+          </div>
+          <button class="btn btn-outline-info btn-lg mt-5" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</div>

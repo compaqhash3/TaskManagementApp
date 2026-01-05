@@ -1,0 +1,67 @@
+<div class="card shadow-sm h-75">
+
+  <div class="card-body">
+    
+    <h5 class="card-title mb-3 d-flex align-items-center gap-2">
+      <i class="bi" [ngClass]="{
+      'bi-plus-circle text-success': mode === 'add',
+      'bi-pencil-square text-warning': mode === 'edit',
+      'bi-eye text-info': mode === 'view',
+      'bi-trash text-danger': mode === 'delete'
+    }">
+      </i>
+
+      <span>
+        {{
+        mode === 'add' ? 'Add Task' :
+        mode === 'edit' ? 'Edit Task' :
+        mode === 'view' ? 'View Task' :
+        'Delete Task'
+        }}
+      </span>
+    </h5>
+
+    <hr />
+    <form *ngIf="task" (ngSubmit)="save()">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Title</label>
+        <input id="txtTitle" class="form-control" [(ngModel)]="task.title" name="title" placeholder="Enter Title here"
+          [readonly]="isReadOnly()" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Description</label>
+        <textarea id="txtDescription" class="form-control" rows="4" [(ngModel)]="task.description" name="description"
+          placeholder="Enter Description here" [readonly]="isReadOnly()">
+        </textarea>
+      </div>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="task.isCompleted" name="completed"
+          id="completedCheck" [disabled]="isReadOnly()" />
+        <label class="form-check-label fw-bold" for="completedCheck">
+          Completed
+        </label>
+      </div>
+
+      <div class="d-flex gap-2">
+        <!-- SAVE -->
+        <button *ngIf="mode === 'add' || mode === 'edit'" class="btn btn-outline-primary" type="submit">
+          Save
+        </button>
+
+        <!-- DELETE CONFIRM -->
+        <button *ngIf="mode === 'delete'" class="btn btn-outline-danger" type="button" (click)="confirmDelete()">
+          Confirm Delete
+        </button>
+
+        <!-- RESET -->
+        <button class="btn btn-outline-secondary" type="button" (click)="newTask()">
+          Reset
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

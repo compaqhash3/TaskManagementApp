@@ -1,0 +1,92 @@
+<div class="card shadow-sm h-75">
+  <div class="card-body">
+    <h5 class="card-title mb-3 d-flex align-items-center gap-2">
+      <i class="bi bi-list-ul text-primary"></i>
+      <span>Task List</span>
+    </h5>
+    <hr />
+    <div class="mb-3">
+      <input class="form-control mb-2" type="text" placeholder="Search tasks..." [(ngModel)]="searchText" />
+
+      <div class="d-flex gap-2">
+        <select class="form-select" [(ngModel)]="statusFilter">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="pending">Pending</option>
+        </select>
+
+        <select class="form-select" [(ngModel)]="sortBy">
+          <option value="created">Newest</option>
+          <option value="title">Title</option>
+          <option value="status">Status</option>
+        </select>
+
+        <button class="btn btn-outline-warning" type="button" (click)="reset()">
+          Refresh
+        </button>
+      </div>
+    </div>
+
+    <div class="table-responsive task-table-wrapper">
+
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light sticky-top">
+          <tr>
+            <th>Title</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            *ngFor="let task of tasks | taskFilter: searchText : statusFilter | taskSort: sortBy">
+
+            <!-- TITLE -->
+            <td [class.text-decoration-line-through]="task.isCompleted">
+              {{ task.title }}
+            </td>
+
+            <!-- STATUS -->
+            <td class="text-center">
+              <span
+                class="badge"
+                [ngClass]="task.isCompleted ? 'bg-success' : 'bg-warning text-dark'">
+                {{ task.isCompleted ? 'Done' : 'Pending' }}
+              </span>
+            </td>
+
+            <!-- ACTIONS -->
+            <td class="text-center">
+              <div class="btn-group btn-group-sm">
+
+                <button
+                  class="btn btn-outline-info"
+                  title="View"
+                  (click)="view(task)">
+                  <i class="bi bi-eye"></i>
+                </button>
+
+                <button
+                  class="btn btn-outline-warning"
+                  title="Edit"
+                  (click)="edit(task)">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+
+                <button
+                  class="btn btn-outline-danger"
+                  title="Delete"
+                  (click)="remove(task)">
+                  <i class="bi bi-trash"></i>
+                </button>
+
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

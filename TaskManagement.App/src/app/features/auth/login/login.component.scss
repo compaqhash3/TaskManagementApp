@@ -1,0 +1,43 @@
+.login-container {
+  max-width: 50%;
+  margin: 100px auto;
+  padding: 40px;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+  height: 450px;
+  
+  label {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  input {
+    width: 100%;
+    padding: 6px;
+  }
+
+  button {
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+  }
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: linear-gradient(
+    334deg,rgba(14, 37, 153, 1) 31%,
+    rgba(252, 70, 107, 1) 100%
+  );
+}
+
+.login-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 250px;
+}
+

@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <span class="navbar-brand fw-bold app-heading">
+    Task Management App
+  </span>
+
+  <div class="ms-auto d-flex align-items-center gap-3">
+    <label class="text-warning">
+      Hi {{this.username}}
+    </label>
+
+    <button class="btn btn-outline-light btn-sm" type="button" (click)="logout()">
+      Logout
+    </button>
+  </div>
+</nav>
+
+<div class="container-fluid pt-3 task-container">
+  <div class="row h-100 align-items-stretch">
+
+    <!-- LEFT: TASK LIST -->
+    <div class="col-md-7 d-flex">
+      <app-task-list class="flex-fill" [tasks]="tasks" (selectTask)="onSelect($event)" (resetRequested)="refresh()"
+        (viewTask)="onView($event)" (editTask)="onEdit($event)" (deleteTask)="onDelete($event)">
+      </app-task-list>
+
+    </div>
+
+    <!-- RIGHT: TASK FORM -->
+    <div class="col-md-5 d-flex">
+      <app-task-form class="flex-fill" [task]="selectedTask" [mode]="mode" (saved)="refresh()" (deleted)="refresh()">
+      </app-task-form>
+    </div>
+
+  </div>
+</div>
